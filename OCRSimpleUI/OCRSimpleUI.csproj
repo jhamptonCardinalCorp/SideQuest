@@ -12,4 +12,8 @@
     <Folder Include="View\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OCRPlayground\OCRPlayground.csproj" />
+  </ItemGroup>
+
 </Project>

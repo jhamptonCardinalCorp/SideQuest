@@ -8,10 +8,9 @@
         WindowState="Maximized"
         WindowStyle="None"
         AllowsTransparency="True"
-        Background="Transparent"
+        Background="#80000000"
         Topmost="True"
-        ShowInTaskbar="False">
-    <Grid>
-
-    </Grid>
+        ShowInTaskbar="False"
+        Cursor="Cross">
+    <Canvas x:Name="OverlayCanvas" />
 </Window>
