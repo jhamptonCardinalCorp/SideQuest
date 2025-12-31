@@ -45,6 +45,7 @@
 
             <StackPanel Width="100"
                         HorizontalAlignment="Left"
+                        MouseLeftButtonDown="Header_MouseLeftButtonDown"
                         Background="#14212B">
                 <Button x:Name="Home"
                         Height="100"
@@ -63,6 +64,7 @@
 
             <Grid Height="80"
                   VerticalAlignment="Top"
+                  MouseLeftButtonDown="Header_MouseLeftButtonDown"
                   Background="#233C4F" RenderTransformOrigin="0.5,0.5" Margin="-88,35,570,0" Grid.ColumnSpan="2">
                 <Grid.RenderTransform>
                     <TransformGroup>

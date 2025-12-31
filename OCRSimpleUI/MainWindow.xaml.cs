@@ -17,6 +17,12 @@ namespace OCRSimpleUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private void Header_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+                DragMove();
+        }
+
         static PreprocessingOcrEngine ocrEngine = new PreprocessingOcrEngine(new TessaractOcrEngine());
 
         public MainWindow()
