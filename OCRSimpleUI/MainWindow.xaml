@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="450" 
+        MinHeight="428"
         Width="800"
         MinWidth="428"
         WindowStyle="None"
@@ -17,80 +18,84 @@
         Background="Transparent">
     <Grid>
 
+        <!-- Three-column layout -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <!-- Left raised column -->
+            <ColumnDefinition Width="3*"/>
+            <!-- Center content -->
+            <ColumnDefinition Width="2*"/>
+            <!-- Right raised column -->
+        </Grid.ColumnDefinitions>
+        
+        <!-- BACKGROUND STRIP (behind everything) -->
+        <Border Grid.ColumnSpan="3"
+                Background="#233C4F"
+                BorderBrush="#282D33"
+                Margin="10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" />
+
+        <!-- LEFT RAISED COLUMN -->
+        <Border Grid.Column="0"
+                Margin="10"
+                Background="#282D33"
+                CornerRadius="8"
+                BorderBrush="#3A4149"
+                BorderThickness="4">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20"
+                                  ShadowDepth="2"
+                                  Color="Black"/>
+            </Border.Effect>
+        </Border>
+
+        <!-- RIGHT RAISED COLUMN -->
+        <Border Grid.Column="2"
+                Margin="10"
+                Background="#282D33"
+                CornerRadius="8"
+                BorderBrush="#3A4149"
+                BorderThickness="4">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20"
+                                  ShadowDepth="2"
+                                  Color="Black"/>
+            </Border.Effect>
+        </Border>
+        
+        <!-- CENTER CONTENT -->
+        <Border Grid.Column="1"
+                Background="#233C4F"
+                CornerRadius="8"
+                BorderBrush="#3A4149"
+                BorderThickness="4"
+                Margin="0,60,0,60">
+        <StackPanel Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="400"
+                    Margin="10">
+
+            <TextBox x:Name="OutputBox"
+                     Height="250"
+                     MinWidth="200"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"/>
+
+            <Button Content="Snip"
+                    Width="100"
+                    Margin="0,20,0,0"
+                    Click="Snip_Click"/>
+        </StackPanel>
+        </Border>
+
         <Border Background="#282D33"
                 BorderBrush="#3A4149"
                 BorderThickness="5"
-                CornerRadius="8,8,0,8" />
+                CornerRadius="8,8,0,8" 
+                Margin="0,0,10,0" >
 
-        <StackPanel Margin="10">
-            <TextBox x:Name="OutputBox" 
-                     Height="296"
-                     Width="400"
-                     MinWidth="200"
-                     />
-            <Button Content="Snip" Click="Snip_Click" Width="80"/>
-        </StackPanel>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="228"/>
-                <ColumnDefinition Width="622"/>
-            </Grid.ColumnDefinitions>
-            <Grid.Effect>
-                <DropShadowEffect BlurRadius="30"
-                                  ShadowDepth="2"
-                                  Direction="-90"
-                                  Color="Gray">
-
-                </DropShadowEffect>
-            </Grid.Effect>
-
-            <StackPanel Width="100"
-                        HorizontalAlignment="Left"
-                        MouseLeftButtonDown="Header_MouseLeftButtonDown"
-                        Background="#14212B">
-                <Button x:Name="Home"
-                        Height="100"
-                        Background="Transparent"
-                        Margin="0,180,0,20">
-
-                </Button>
-                <Button x:Name="Profile"
-                        Height="100"
-                        Background="Transparent"
-                        BorderBrush="Transparent"
-                        Margin="0,0,0,10">
-
-                </Button>
-            </StackPanel>
-
-            <Grid Height="80"
-                  VerticalAlignment="Top"
-                  MouseLeftButtonDown="Header_MouseLeftButtonDown"
-                  Background="#233C4F" RenderTransformOrigin="0.5,0.5" Margin="-88,35,570,0" Grid.ColumnSpan="2">
-                <Grid.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-36.527"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Grid.RenderTransform>
-                <TextBlock Text="C# OCR Simple UI"
-                           FontFamily="open sans condensed"
-                           FontSize="26"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           Foreground="#E0FFFF">
-                </TextBlock>
-                <Button Height="40"
-                        Width="40"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Right"
-                        Margin="0,0,20,0">
-                </Button>
-            </Grid>
-        </Grid>
+        </Border>
     </Grid>
 </Window>

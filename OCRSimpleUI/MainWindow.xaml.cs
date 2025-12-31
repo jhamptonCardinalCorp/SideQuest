@@ -1,17 +1,10 @@
-﻿using OCRPlayground;
-using OCRSimpleUI.Model;
-using OCRSimpleUI.Utilities;
-using System.Runtime.InteropServices;
-using System.Text;
+﻿
+//  Look, I wrote most of this (OCRSimpleUI) and OCRPlayground after not sleeping for 30+ hours.
+//  So... just keep that in mind.
+
+using OCRPlayground;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using static OCRSimpleUI.MonitorSelector;
 
 namespace OCRSimpleUI
