@@ -71,3 +71,7 @@ namespace OCRPlayground
 //• 	If the image is code → use SingleLine
 //• 	If the image is paragraph text → use Auto
 //But let’s get you back to a stable baseline first
+
+// Grayscal + Normalization seems to be the sweet spot for screen captures, at least when working with UIs.
+// The rest would be more useful when working with scanned documents or (on occasion) photos.
+// This does leave us with the question of where does EasyOCR fall. It's supposed to be good for "messy handwriting".
