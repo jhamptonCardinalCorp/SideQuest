@@ -13,6 +13,7 @@
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterScreen"
+        Topmost="True"
         Background="Transparent">
     <Grid>
 
