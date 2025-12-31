@@ -31,12 +31,22 @@ namespace OCRPlayground
         {
             return await Task.Run(() =>
             {
-                using var engine = new TesseractEngine(_tessdataPath, _language, EngineMode.Default);
+                //We switched EngineMode from Default to LstmOnly, as it's the modern neural model and has higher accuracy.
+                using var engine = new TesseractEngine(_tessdataPath, _language, EngineMode.LstmOnly);
+                // If we know the domain (logs, UI labels, code), this helps a ton:
+                //engine.SetVariable("tessedit_char_whitelist", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789:/.-_()[]{} ");
                 using var pix = PixConverter.ToPix(image);
-                using var page = engine.Process(pix);
+                //using var page = engine.Process(pix);
+                //using var page = engine.Process(pix, PageSegMode.Auto);
+                using var page = engine.Process(pix, PageSegMode.SingleBlock);
 
                 return page.GetText();
             });
+            // Other options for UI text include:
+            // PageSegMode.SingleBlock
+            // PageSegMode.SingleLine
+            // PageSegMode.SingleWord
+            //      TODO: add either a setting or a dynamic method for selection.
         }
     }
 }
