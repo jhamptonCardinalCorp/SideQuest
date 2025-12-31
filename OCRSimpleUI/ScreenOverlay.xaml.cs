@@ -1,5 +1,7 @@
-﻿using System.Drawing;
+﻿//using OCRSimpleUI.Model;
+using System.Drawing;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static OCRSimpleUI.MonitorSelector;
 
 namespace OCRSimpleUI
 {
@@ -17,13 +20,34 @@ namespace OCRSimpleUI
     /// </summary>
     public partial class ScreenOverlay : Window
     {
+        private MONITORINFO _monitor;
+
         private System.Windows.Point startPoint;
         private System.Windows.Shapes.Rectangle selectionRect;
         private TaskCompletionSource<Bitmap> tcs;
 
-        public ScreenOverlay()
+        //public ScreenOverlay(MONITORINFO monitor)
+        public ScreenOverlay(MONITORINFO monitor)
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            WindowState = WindowState.Maximized;
+            //_monitor = monitor;
+            //Loaded += ScreenOverlay_Loaded;
+        }
+        private void ScreenOverlay_Loaded(object sender, RoutedEventArgs e)
+        {
+            WindowStartupLocation = WindowStartupLocation.Manual;
+
+            Left = _monitor.rcMonitor.Left;
+            Top = _monitor.rcMonitor.Top;
+            Width = _monitor.rcMonitor.Right - _monitor.rcMonitor.Left;
+            Height = _monitor.rcMonitor.Bottom - _monitor.rcMonitor.Top;
+
+            // Debug check
+            MessageBox.Show(
+                $"Overlay:\nLeft={Left}, Top={Top}\nWidth={Width}, Height={Height}",
+                "Overlay Monitor Bounds");
         }
 
         public Task<Bitmap> StartSnipAsync()
@@ -94,7 +118,7 @@ namespace OCRSimpleUI
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
-                g.CopyFromScreen((int)x, (int)y, 0, 0, new System.Drawing.Size(w, h));
+                g.CopyFromScreen((int)(Left + x), (int)(Top + y), 0, 0, new System.Drawing.Size(w, h));
             }
 
             return bmp;

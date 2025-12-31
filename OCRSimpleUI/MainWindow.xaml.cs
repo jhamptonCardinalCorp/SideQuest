@@ -1,4 +1,7 @@
 ﻿using OCRPlayground;
+using OCRSimpleUI.Model;
+using OCRSimpleUI.Utilities;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static OCRSimpleUI.MonitorSelector;
 
 namespace OCRSimpleUI
 {
@@ -31,8 +35,10 @@ namespace OCRSimpleUI
         }
         private async void Snip_Click(object sender, RoutedEventArgs e)
         {
-            //var overlay = new SnippingOverlayWindow();
-            var overlay = new ScreenOverlay();
+            var monitor = GetMonitorForWindow(this);
+
+            var overlay = new ScreenOverlay(monitor);//.Owner = this;
+            overlay.Owner = this;
             var bitmap = await overlay.StartSnipAsync();
 
             if (bitmap != null)
@@ -42,5 +48,12 @@ namespace OCRSimpleUI
                 OutputBox.Text = text;
             }
         }
+
+        //public MONITORINFO GetMonitorForWindow(Window window)
+        //{
+        //    // Get the window’s top-left corner in screen coordinates
+        //    var p = window.PointToScreen(new Point(0, 0));
+        //    return MonitorSelector.GetMonitorFromPoint((int)p.X, (int)p.Y);
+        //}
     }
 }
