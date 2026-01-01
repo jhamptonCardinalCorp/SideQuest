@@ -8,7 +8,7 @@
         Title="MainWindow" 
         Height="450" 
         MinHeight="428"
-        Width="800"
+        Width="600"
         MinWidth="428"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -20,11 +20,13 @@
 
         <!-- Three-column layout -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"
+                MaxWidth="80"/>
             <!-- Left raised column -->
             <ColumnDefinition Width="3*"/>
             <!-- Center content -->
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"
+                MaxWidth="80"/>
             <!-- Right raised column -->
         </Grid.ColumnDefinitions>
         
@@ -32,31 +34,50 @@
         <Border Grid.ColumnSpan="3"
                 Background="#233C4F"
                 BorderBrush="#282D33"
-                Margin="10"
+                Margin="20"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch" />
 
         <!-- LEFT RAISED COLUMN -->
         <Border Grid.Column="0"
                 Margin="10"
-                Background="#282D33"
                 CornerRadius="8"
                 BorderBrush="#3A4149"
+                  MouseLeftButtonDown="Header_MouseLeftButtonDown"
                 BorderThickness="4">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#1C1F23" Offset="0"/>
+                    <GradientStop Color="#262B31" Offset="0.25"/>
+                    <GradientStop Color="#2B3036" Offset="0.5"/>
+                    <GradientStop Color="#262B31" Offset="0.75"/>
+                    <GradientStop Color="#1C1F23" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
             <Border.Effect>
                 <DropShadowEffect BlurRadius="20"
                                   ShadowDepth="2"
                                   Color="Black"/>
             </Border.Effect>
         </Border>
-
+        
         <!-- RIGHT RAISED COLUMN -->
         <Border Grid.Column="2"
-                Margin="10"
-                Background="#282D33"
+                Margin="10,0,0,0"
                 CornerRadius="8"
                 BorderBrush="#3A4149"
+                  MouseLeftButtonDown="Header_MouseLeftButtonDown"
                 BorderThickness="4">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#1C1F23" Offset="0"/>
+                    <GradientStop Color="#262B31" Offset="0.25"/>
+                    <GradientStop Color="#2B3036" Offset="0.5"/>
+                    <GradientStop Color="#262B31" Offset="0.75"/>
+                    <GradientStop Color="#1C1F23" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <Border.Effect>
                 <DropShadowEffect BlurRadius="20"
                                   ShadowDepth="2"
@@ -90,12 +111,5 @@
         </StackPanel>
         </Border>
 
-        <Border Background="#282D33"
-                BorderBrush="#3A4149"
-                BorderThickness="5"
-                CornerRadius="8,8,0,8" 
-                Margin="0,0,10,0" >
-
-        </Border>
     </Grid>
 </Window>
